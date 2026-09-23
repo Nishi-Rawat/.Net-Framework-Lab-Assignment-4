@@ -1,0 +1,48 @@
+using System;
+
+class Program
+{
+    // Custom delegate
+    delegate void Calculator(int a, int b);
+
+    // Addition
+    static void Addition(int a, int b)
+    {
+        Console.WriteLine("Addition = " + (a + b));
+    }
+
+    // Subtraction
+    static void Subtraction(int a, int b)
+    {
+        Console.WriteLine("Subtraction = " + (a - b));
+    }
+
+    // Multiplication
+    static void Multiplication(int a, int b)
+    {
+        Console.WriteLine("Multiplication = " + (a * b));
+    }
+
+    // Division
+    static void Division(int a, int b)
+    {
+        if (b != 0)
+            Console.WriteLine("Division = " + ((double)a / b));
+        else
+            Console.WriteLine("Cannot divide by zero.");
+    }
+
+    static void Main()
+    {
+        // Create multicast delegate
+        Calculator calc = Addition;
+
+        // Attach other methods
+        calc += Subtraction;
+        calc += Multiplication;
+        calc += Division;
+
+        // Execute all methods
+        calc(20, 5);
+    }
+}
